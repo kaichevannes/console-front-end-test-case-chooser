@@ -1,0 +1,28 @@
+Cinnamon Trust users
+
+can view all the tasks they are assigned, default sorted by the due date, closest first
+
+can view all cases they are assigned on
+
+can view all notifications they are tagged in
+
+can sort notifications by read/unread
+
+can filter tasks by complete/incomplete
+
+can view income dashboard, given they have relevant permissions (fields tbd)
+
+can view expenses dashboard, given they have relevant permissions  (fields tbd)
+
+can filter dashboards on any column
+
+can view an escalation dashboard
+
+can filter escalation dashboard by escalation type
+
+can click an item in the dashboard to visit the relevant detail screen (case, task, etc)
+
+can view collection box dashboard
+Management 
+
+can view all cases by assignee
