@@ -1,6 +1,6 @@
 from spec_section import SpecSection
 
-TASK_INDICATORS = ["can", "shall"]
+TASK_INDICATORS = ["can", "shall", "must"]
 
 
 class SpecParser:
