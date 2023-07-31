@@ -25,6 +25,6 @@ class Display:
                 for test in test_case:
                     print(f"Browser = {test[0]}")
                     print(f"Resolution = {test[1]}")
-                print()
+                input()
                 test_case = self.test_case_chooser.next_test_case()
         

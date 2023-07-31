@@ -41,7 +41,7 @@ class TestCaseChooser:
         self.tablet = tablet
 
         self.spec_section = None
-        self.mobile_application = not (self.windows and self.mac)
+        self.mobile_application = not (self.windows or self.mac)
         self.task_index = -1
         self.current_task = None
 
