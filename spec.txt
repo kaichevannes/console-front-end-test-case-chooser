@@ -1,4 +1,4 @@
-Cinnamon Trust users
+Website users
 
 can view all the tasks they are assigned, default sorted by the due date, closest first
 
