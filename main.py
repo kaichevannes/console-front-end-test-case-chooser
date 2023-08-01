@@ -2,7 +2,8 @@ import argparse
 from display import Display
 from output_html_generator import OutputHtmlGenerator
 from spec_parser import SpecParser
-from browser_distribution import WindowsBrowserDistribution
+from test_case_generator import TestCaseGenerator
+from config import DESKTOP_PROBABILITY, MOBILE_PROBABILITY, TABLET_PROBABILITY
 
 
 # Test profiles for B2B, B2C, middleground
@@ -33,28 +34,30 @@ def main():
 
 
 def main_interactive():
-    """Interactive main method. Get a number of test cases for windows."""
-    browser_distribution = WindowsBrowserDistribution()
+    """Interactive main method. Get a number of test cases."""
+    
+    test_case_generator = TestCaseGenerator(DESKTOP_PROBABILITY, MOBILE_PROBABILITY, TABLET_PROBABILITY)
+
+    def get_num_test_cases():
+        """Get the number of test cases, try again until the user provides a positive integer."""
+        user_input = input("Enter the number of test cases to generate: ")
+
+        if user_input == "":
+            return float("inf")
+        elif user_input.isdigit():
+            return int(user_input)
+        else:
+            return get_num_test_cases()
+
     num_test_cases = get_num_test_cases()
     print()
     while num_test_cases > 0:
-        test_case = browser_distribution.get_test_case()
-        print(f"Browser = {test_case[0]}")
-        print(f"Resolution = {test_case[1]}")
+        test_case = test_case_generator.generate_test_case()
+        for test in test_case:
+            print(f"Browser = {test[0]} {test[1]}")
+            print(f"Resolution = {test[2]}")
         input()
         num_test_cases -= 1
-
-
-def get_num_test_cases():
-    """Get the number of test cases, try again until the user provides a positive integer."""
-    user_input = input("Enter the number of test cases to generate: ")
-
-    if user_input == "":
-        return float("inf")
-    elif user_input.isdigit():
-        return int(user_input)
-    else:
-        return get_num_test_cases()
 
 
 if __name__ == "__main__":

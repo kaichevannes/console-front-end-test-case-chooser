@@ -1,6 +1,6 @@
 from test_case_chooser import TestCaseChooser
 from failure import Failure, FunctionalityFailure
-from config import WINDOWS, MAC, MOBILE, TABLET, HAS_DESIGN
+from config import HAS_DESIGN
 
 
 class Display:
@@ -8,7 +8,7 @@ class Display:
 
     def __init__(self, spec_sections):
         """"""
-        self.test_case_chooser = TestCaseChooser(WINDOWS, MAC, MOBILE, TABLET)
+        self.test_case_chooser = TestCaseChooser()
         self.design_failures = []
         self.functionality_failures = []
         self.spec_sections = spec_sections
@@ -30,11 +30,12 @@ class Display:
             test_case = self.test_case_chooser.next_test_case()
             while test_case:
                 local_task = self.test_case_chooser.current_task
+                # TODO: Isolate this
                 print()
                 print(f"Task = {local_task}")
                 for test in test_case:
-                    print(f"Browser = {test[0]}")
-                    print(f"Resolution = {test[1]}")
+                    print(f"Browser = {test[0]} {test[1]}")
+                    print(f"Resolution = {test[2]}")
                 if functionality_failure.check_failure():
                     functionality_failure.get_failures(local_task)
                 test_case = self.test_case_chooser.next_test_case()
