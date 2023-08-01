@@ -33,7 +33,7 @@ class BrowserDistribution:
         """Get the test case for the browser this class represents
 
         Returns:
-            str: A browser and resolution to test
+            (str, str): (browser, resolution) to test
         """
         test_browser = self.get_random_selection(
             self.browsers, self.browsers_probability
