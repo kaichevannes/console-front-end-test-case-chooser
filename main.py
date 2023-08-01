@@ -1,38 +1,50 @@
-import os
+import sys
+import argparse
 from display import Display
-from test_output_html_generator import TestOutputHtmlGenerator
-from spec_section import SpecSection
+from output_html_generator import OutputHtmlGenerator
+from spec_parser import SpecParser
+
 
 # Test profiles for B2B, B2C, middleground
+def main():
+    """Main method."""
+    if args.filename is not None:
+        spec_parser = SpecParser(args.filename)
+    else:
+        spec_parser = SpecParser("spec.txt")
+
+    try:
+        spec_sections = spec_parser.parse()
+    except Exception as e:
+        print(e)
+        return
+
+    display = Display(spec_sections)
+    display.display()
+
+    output_html_generator = OutputHtmlGenerator(
+        "output.html",
+        display.design_failures,
+        display.functionality_failures,
+        display.spec_sections,
+    )
+    output_html_generator.generate_test_output_html()
+    output_html_generator.show_html()
+
+
+def main_interactive():
+    """Interactive main method. Get a number of configs."""
+
 
 if __name__ == "__main__":
-    # display = Display()
-    # display.display("spec.txt")
-    
-    # design_errors = display.get_design_errors()
-    # functionality_passed = display.get_functionality_errors()
-    # spec_tested_against = display.get_spec()
-    
-    # test_output_html_generator = TestOutputHtmlGenerator("output.html", design_passed, functionality_passed, spec_tested_against)
-    spec_section1 = SpecSection("Category1")
-    spec_section1.add_task("task1")
-    spec_section1.add_task("task2")
-    
-    spec_section2 = SpecSection("Category2")
-    spec_section2.add_task("task3")
-    spec_section2.add_task("task4")
-    
-    test_output_html_generator = TestOutputHtmlGenerator("output.html", 
-                                                         ["Design failure 1","Design failure 2"], 
-                                                         ["Functionality failure 1", "Functionality failure 2"],
-                                                         [spec_section1,spec_section2])
-    test_output_html_generator.generate_test_output_html()
-    test_output_html_generator.show_html()
-            
-    
-    
-def check_design_passed():
-    design_passed = input("Design passed? (y/n)")
-    match design_passed:
-        case 'y':
-            return "Design passed<br>"
+    parser = argparse.ArgumentParser(
+        prog="ConsoleFrontEndTestCaseChooser",
+        description="Generate test cases based on a confluence spec and provide a test output.",
+    )
+    parser.add_argument("-f", "--filename")
+    parser.add_argument("-i", "--interactive", action="store_true")
+    args = parser.parse_args()
+    if args.interactive:
+        main_interactive()
+    else:
+        main()

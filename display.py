@@ -1,32 +1,43 @@
 from test_case_chooser import TestCaseChooser
-from spec_parser import SpecParser
-from config import WINDOWS, MAC, MOBILE, TABLET
+from failure import Failure, FunctionalityFailure
+from config import WINDOWS, MAC, MOBILE, TABLET, HAS_DESIGN
 
 
 class Display:
     """Display the test cases to the user."""
 
-    def __init__(self):
+    def __init__(self, spec_sections):
         """"""
         self.test_case_chooser = TestCaseChooser(WINDOWS, MAC, MOBILE, TABLET)
+        self.design_failures = []
+        self.functionality_failures = []
+        self.spec_sections = spec_sections
 
-    def display(self, filename):
+    def display(self):
         """Display the contents of the file provided to the user along with test cases"""
-        spec_parser = SpecParser(filename)
-        spec_section = spec_parser.parse()
+        # Design
+        if HAS_DESIGN:
+            design_failure = Failure("Design")
+            if design_failure.check_failure():
+                design_failure.get_failures()
+            self.design_failures = design_failure.failures
 
-        for section in spec_section:
+        for section in self.spec_sections:
+            functionality_failure = FunctionalityFailure(section)
             self.test_case_chooser.set_spec_section(section)
             print(f"Section Category = {section.category}")
 
-            # Eventually this should be output to a .rtf file (rich text file) with formatting 
-            # so that it can be copy pasted into productive.
             test_case = self.test_case_chooser.next_test_case()
             while test_case:
+                local_task = self.test_case_chooser.current_task
                 print()
-                print(f"Task = {self.test_case_chooser.current_task}")
+                print(f"Task = {local_task}")
                 for test in test_case:
                     print(f"Browser = {test[0]}")
                     print(f"Resolution = {test[1]}")
-                input()
+                if functionality_failure.check_failure():
+                    functionality_failure.get_failures(local_task)
                 test_case = self.test_case_chooser.next_test_case()
+
+            local_functionality_failures = functionality_failure.failures
+            self.functionality_failures += local_functionality_failures
