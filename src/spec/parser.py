@@ -1,4 +1,4 @@
-from spec_section import SpecSection
+from src.spec.section import SpecSection
 
 TASK_INDICATORS = ["can", "shall", "must"]
 

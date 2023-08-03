@@ -2,7 +2,7 @@ import os
 from config import HAS_DESIGN
 
 
-class OutputHtmlGenerator:
+class HtmlGenerator:
     """Generate the test output file"""
 
     def __init__(

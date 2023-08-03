@@ -1,5 +1,5 @@
-from test_case_chooser import TestCaseChooser
-from failure import Failure, FunctionalityFailure
+from src.case.chooser import TestCaseChooser
+from src.failure import Failure, FunctionalityFailure
 from config import HAS_DESIGN
 
 

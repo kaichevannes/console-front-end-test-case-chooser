@@ -1,8 +1,8 @@
 import argparse
-from display import Display
-from output_html_generator import OutputHtmlGenerator
-from spec_parser import SpecParser
-from test_case_generator import TestCaseGenerator
+from src.display import Display
+from src.output.html_generator import HtmlGenerator
+from src.spec.parser import SpecParser
+from src.case.generator import TestCaseGenerator
 from config import DESKTOP_PROBABILITY, MOBILE_PROBABILITY, TABLET_PROBABILITY
 
 
@@ -23,7 +23,7 @@ def main():
     display = Display(spec_sections)
     display.display()
 
-    output_html_generator = OutputHtmlGenerator(
+    output_html_generator = HtmlGenerator(
         "output.html",
         display.design_failures,
         display.functionality_failures,
