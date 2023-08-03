@@ -30,8 +30,6 @@ class Failure:
             if index > max_index: 
                 break
             failure = input(prompt(index))
-            
-        print(f"self.failures = {self.failures}")
 
 
 class FunctionalityFailure(Failure):
@@ -44,4 +42,4 @@ class FunctionalityFailure(Failure):
     def get_failures(self, task, max_index = float('inf')):
         """Get a single failure for a given task."""
         super().get_failures(max_index)
-        self.spec_section.task_failed(task)
+        self.spec_section.task_failed(task, self.failures)

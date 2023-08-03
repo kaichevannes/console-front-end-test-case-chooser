@@ -1,8 +1,8 @@
 # Change these flags to select the devices to generate tests for.
 WINDOWS = True
-MAC = True
-MOBILE = True
-TABLET = True
+MAC = False
+MOBILE = False
+TABLET = False
 
 # Change this flag to select if the test case has a design to compare to.
 HAS_DESIGN = True

@@ -4,6 +4,7 @@ class SpecSection:
     def __init__(self, category):
         self.tasks = []
         self.failed_tasks = []
+        self.failed_reasons = {}
         self.category = category
 
     def add_task(self, task):
@@ -14,10 +15,11 @@ class SpecSection:
         """
         self.tasks.append(task)
 
-    def task_failed(self, task):
+    def task_failed(self, task, failures):
         """Add a task to the failed tasks.
 
         Args:
             task (str): the task which failed
         """
         self.failed_tasks.append(task)
+        self.failed_reasons.update({task: failures})

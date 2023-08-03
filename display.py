@@ -23,12 +23,13 @@ class Display:
             self.design_failures = design_failure.failures
 
         for section in self.spec_sections:
-            functionality_failure = FunctionalityFailure(section)
+            
             self.test_case_chooser.set_spec_section(section)
             print(f"Section Category = {section.category}")
 
             test_case = self.test_case_chooser.next_test_case()
             while test_case:
+                functionality_failure = FunctionalityFailure(section)
                 local_task = self.test_case_chooser.current_task
                 # TODO: Isolate this
                 print()
@@ -40,5 +41,5 @@ class Display:
                     functionality_failure.get_failures(local_task)
                 test_case = self.test_case_chooser.next_test_case()
 
-            local_functionality_failures = functionality_failure.failures
-            self.functionality_failures += local_functionality_failures
+                task_failures = functionality_failure.failures
+                self.functionality_failures += task_failures

@@ -19,8 +19,9 @@ SAFARI_PRECEDING = "v15.6 (Monterey)"
 
 
 class BrowserDistribution:
-    """Represent a browser"""
+    """Represent a browser distribution."""
 
+    # TODO: Refactor to be a Factory
     def __init__(
         self, browsers, browsers_probability, resolutions, resolutions_probability
     ):

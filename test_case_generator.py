@@ -29,13 +29,19 @@ TABLET_OS_PROBABILITY = (59.03, 40.83)
 
 
 class TestCaseGenerator:
+    """Generate a single test case."""
+
     def __init__(self, desktop_probability, mobile_probability, tablet_probability):
         self.desktop_probability = desktop_probability
         self.mobile_probability = mobile_probability
         self.tablet_probability = tablet_probability
 
     def generate_test_case(self):
-        """"""
+        """Generate a single test case.
+
+        Returns:
+            [(os,browser,resolution)]: the test case tuple being returned
+        """
         desktop_test_case = self.generate_desktop(self.desktop_probability)
         mobile_test_case = self.generate_mobile(self.mobile_probability)
         tablet_test_case = self.generate_tablet(self.tablet_probability)
@@ -46,14 +52,15 @@ class TestCaseGenerator:
         """Generate a test case based on the desktop configuration.
 
         Returns:
-            (str,str,str): (browser,resolution) to test
+            (str,str,str): (os,browser,resolution) to test
         """
+        # TODO: Change into class and return a dictionary instead of a tuple
         desktop_os = self.get_desktop_os()
 
         if desktop_os is None:
             return None
 
-        if not (random.random() < probability / 100):
+        if not random.random() < probability / 100:
             return None
 
         if desktop_os == WINDOWS_OS:
@@ -75,7 +82,7 @@ class TestCaseGenerator:
         if mobile_os is None:
             return None
 
-        if not (random.random() < probability / 100):
+        if not random.random() < probability / 100:
             return None
 
         if mobile_os == IOS_OS:
@@ -92,13 +99,12 @@ class TestCaseGenerator:
         Returns:
             (str,str,str): (os,browser,resolution) to test
         """
-        # TODO: Change into class and return a dictionary instead of a tuple
         tablet_os = self.get_tablet_os()
 
         if tablet_os is None:
             return tablet_os
 
-        if not (random.random() < probability / 100):
+        if not random.random() < probability / 100:
             return None
 
         if tablet_os == IOS_OS:
