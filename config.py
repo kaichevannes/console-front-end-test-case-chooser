@@ -11,3 +11,7 @@ HAS_DESIGN = True
 DESKTOP_PROBABILITY = 100
 MOBILE_PROBABILITY = 15
 TABLET_PROBABILITY = 5
+
+
+# Configured by the program arguments
+has_design = False

@@ -1,6 +1,6 @@
 from case.chooser import TestCaseChooser
 from failure import Failure, FunctionalityFailure
-from config import HAS_DESIGN
+import config
 
 class Display:
     """Display the test cases to the user."""
@@ -15,7 +15,8 @@ class Display:
     def display(self):
         """Display the contents of the file provided to the user along with test cases"""
         # Design
-        if HAS_DESIGN:
+        print(f"config.has_design = {config.has_design}")
+        if config.has_design:
             design_failure = Failure("Design")
             if design_failure.check_failure():
                 design_failure.get_failures()

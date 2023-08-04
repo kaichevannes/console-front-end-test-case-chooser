@@ -1,5 +1,5 @@
 import os
-from config import HAS_DESIGN
+import config
 
 
 class HtmlGenerator:
@@ -23,7 +23,7 @@ class HtmlGenerator:
 
     def generate_test_output_html(self):
         """Generate the html for each component of the output and then combine them together."""
-        if HAS_DESIGN:
+        if config.has_design:
             design_html = self.generate_design_html()
         else:
             design_html = ""
