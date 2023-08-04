@@ -1,8 +1,8 @@
 import argparse
-from src.display import Display
-from src.output.html_generator import HtmlGenerator
-from src.spec.parser import SpecParser
-from src.case.generator import TestCaseGenerator
+from display import Display
+from output.html_generator import HtmlGenerator
+from spec.parser import SpecParser
+from case.generator import TestCaseGenerator
 from config import DESKTOP_PROBABILITY, MOBILE_PROBABILITY, TABLET_PROBABILITY
 
 

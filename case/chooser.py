@@ -1,4 +1,4 @@
-from src.case.generator import TestCaseGenerator
+from case.generator import TestCaseGenerator
 from config import (
     WINDOWS,
     MAC,

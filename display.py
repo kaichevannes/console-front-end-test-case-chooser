@@ -1,7 +1,6 @@
-from src.case.chooser import TestCaseChooser
-from src.failure import Failure, FunctionalityFailure
+from case.chooser import TestCaseChooser
+from failure import Failure, FunctionalityFailure
 from config import HAS_DESIGN
-
 
 class Display:
     """Display the test cases to the user."""

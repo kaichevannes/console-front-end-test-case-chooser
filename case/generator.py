@@ -1,5 +1,5 @@
 import random
-from src.browser.distribution import (
+from browser.distribution import (
     WindowsBrowserDistribution,
     MacBrowserDistribution,
     IosMobileBrowserDistribution,
