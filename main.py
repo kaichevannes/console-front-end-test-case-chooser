@@ -70,7 +70,6 @@ if __name__ == "__main__":
     parser.add_argument("-i", "--interactive", action="store_true")
     parser.add_argument("-d", "--design", action="store_true")
     args = parser.parse_args()
-    print(args.design)
     config.has_design = args.design
     
     if args.interactive:
